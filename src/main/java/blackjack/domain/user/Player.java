@@ -43,9 +43,4 @@ public class Player extends User {
             throw new IllegalArgumentException(YES_OR_NO_ERROR);
         }
     }
-
-    @Override
-    public boolean isAvailableDraw() {
-        return !this.isBust() && !this.isBlackjack();
-    }
 }

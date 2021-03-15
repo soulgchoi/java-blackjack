@@ -32,7 +32,7 @@ public class OutputView {
     }
 
     private static void showCards(Dealer dealer, Players players) {
-        String dealerCard = dealer.getCards().get(0).getCard();
+        String dealerCard = dealer.cards().get(0).getCard();
         System.out.printf(DEALER_CARD + NEWLINE, dealerCard);
         for (Player player : players.getPlayers()) {
             showPlayerCard(player);
@@ -55,7 +55,7 @@ public class OutputView {
 
     private static String combineAllCard(User user) {
         List<String> allCards = new ArrayList<>();
-        for (Card card : user.getCards()) {
+        for (Card card : user.cards()) {
             allCards.add(card.getCard());
         }
         return String.join(STRING_DELIMITER, allCards);
@@ -91,7 +91,7 @@ public class OutputView {
     }
 
     private static String getScore(User user) {
-        int userScore = user.getScore();
+        int userScore = user.score();
         if (userScore == 0) {
             return BUST_MESSAGE;
         }

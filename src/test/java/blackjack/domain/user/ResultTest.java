@@ -16,8 +16,8 @@ public class ResultTest {
     private final UserDeck userDeck = new UserDeck();
 
     {
-        userDeck.add(one);
-        userDeck.add(two);
+        userDeck.draw(one);
+        userDeck.draw(two);
     }
 
     private final Money money = new Money(100);
@@ -29,7 +29,7 @@ public class ResultTest {
 
         Card dealerCard = new Card("J", "클로버");
         UserDeck dealerDeck = new UserDeck();
-        dealerDeck.add(dealerCard);
+        dealerDeck.draw(dealerCard);
         Dealer dealer = new Dealer(dealerDeck);
 
         assertThat(Result.getResult(player, dealer)).isEqualTo(BlackjackResult.WIN);
@@ -43,8 +43,8 @@ public class ResultTest {
         Card dealerCard = new Card("J", "클로버");
         Card dealerCard2 = new Card("5", "하트");
         UserDeck dealerDeck = new UserDeck();
-        dealerDeck.add(dealerCard);
-        dealerDeck.add(dealerCard2);
+        dealerDeck.draw(dealerCard);
+        dealerDeck.draw(dealerCard2);
         Dealer dealer = new Dealer(dealerDeck);
 
         assertThat(Result.getResult(player, dealer)).isEqualTo(BlackjackResult.TIE);
@@ -54,12 +54,12 @@ public class ResultTest {
     @DisplayName("플레이어 버스트 패배 체크")
     void playerBurst() {
         Card card3 = new Card("J", "다이아몬드");
-        userDeck.add(card3);
+        userDeck.draw(card3);
         Player player = new Player(userDeck, "sorong", money);
 
         Card dealerCard = new Card("J", "클로버");
         UserDeck dealerDeck = new UserDeck();
-        dealerDeck.add(dealerCard);
+        dealerDeck.draw(dealerCard);
         Dealer dealer = new Dealer(dealerDeck);
 
         assertThat(Result.getResult(player, dealer)).isEqualTo(BlackjackResult.BUST);
@@ -73,8 +73,8 @@ public class ResultTest {
         Card dealerCard = new Card("J", "클로버");
         Card dealerCard2 = new Card("K", "하트");
         UserDeck dealerDeck = new UserDeck();
-        dealerDeck.add(dealerCard);
-        dealerDeck.add(dealerCard2);
+        dealerDeck.draw(dealerCard);
+        dealerDeck.draw(dealerCard2);
         Dealer dealer = new Dealer(dealerDeck);
 
         assertThat(Result.getResult(player, dealer)).isEqualTo(BlackjackResult.LOSE);

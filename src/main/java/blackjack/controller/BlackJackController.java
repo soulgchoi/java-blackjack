@@ -34,7 +34,7 @@ public class BlackJackController {
 
     private void playerDraw(CardDeck cardDeck, Player player) {
         String input = InputView.requestMoreDraw(player.getName());
-        if (player.isAvailableDraw() && player.isDrawable(input)) {
+        if (!player.isFinished() && player.isDrawable(input)) {
             player.draw(cardDeck.draw());
             OutputView.showPlayerCard(player);
             playerDraw(cardDeck, player);
@@ -42,7 +42,7 @@ public class BlackJackController {
     }
 
     private void processDealer(CardDeck cardDeck, Dealer dealer) {
-        if (dealer.isAvailableDraw()) {
+        if (!dealer.isFinished()) {
             dealer.draw(cardDeck.draw());
             OutputView.showDealerDraw();
             processDealer(cardDeck, dealer);
